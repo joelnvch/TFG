@@ -1,0 +1,131 @@
+[
+   {
+      "name": "Data Pipeline",
+      "desc": "An arbitrarily complex chain of processes that manipulate data where the output data of one process becomes the input to the next.",
+      "costs": {
+         "blue": 2,
+         "white": 0,
+         "gray": 3,
+         "orange": 2
+      },
+      "letters": [
+         "A"
+      ],
+      "value": 2,
+      "card_color": "orange"
+   },
+   {
+      "name": "Computational Complexity",
+      "desc": "The amount of resources required for running an algorithm.",
+      "costs": {
+         "blue": 0,
+         "white": 3,
+         "gray": 3,
+         "orange": 1
+      },
+      "letters": [
+         "C"
+      ],
+      "value": 2,
+      "card_color": "orange"
+   },
+   {
+      "name": "Scalability",
+      "desc": "The capability of a system, network, or process to handle a growing amount of work. ",
+      "costs": {
+         "blue": 4,
+         "white": 2,
+         "gray": 0,
+         "orange": 2
+      },
+      "letters": [
+         "V"
+      ],
+      "value": 1,
+      "card_color": "orange"
+   },
+   {
+      "name": "Performance Testing",
+      "desc": "A type of software testing to ensure software applications will perform well under their expected workload.",
+      "costs": {
+         "blue": 2,
+         "white": 4,
+         "gray": 2,
+         "orange": 1
+      },
+      "letters": [],
+      "value": 3,
+      "card_color": "orange"
+   },
+   {
+      "name": "Continuous Integration",
+      "desc": "A software development practice whereby developers combine changes to the code in a central repository on a regular basis, after which automatic versions and tests are executed. ",
+      "costs": {
+         "blue": 1,
+         "white": 4,
+         "gray": 0,
+         "orange": 2
+      },
+      "letters": [
+         "M"
+      ],
+      "value": 1,
+      "card_color": "orange"
+   },
+   {
+      "name": "Algorithmic efficiency",
+      "desc": "Number of computational resources (computational time, the memory space, etc) used by the algorithm. ",
+      "costs": {
+         "blue": 0,
+         "white": 5,
+         "gray": 1,
+         "orange": 1
+      },
+      "letters": [
+         "C"
+      ],
+      "value": 1,
+      "card_color": "orange"
+   },
+   {
+      "name": "Proof of Concept",
+      "desc": "A realization of a certain method or idea in order to demonstrate its feasibility. ",
+      "costs": {
+         "blue": 3,
+         "white": 1,
+         "gray": 2,
+         "orange": 2
+      },
+      "letters": [],
+      "value": 2,
+      "card_color": "orange"
+   },
+   {
+      "name": "Software quality",
+      "desc": "Software quality is defined as a field of study and practice that describes the desirable attributes of software products. There are two main approaches to software quality: defect management and quality attributes.",
+      "costs": {
+         "blue": 0,
+         "white": 3,
+         "gray": 2,
+         "orange": 2
+      },
+      "letters": [],
+      "value": 2,
+      "card_color": "orange"
+   },
+   {
+      "name": "Release",
+      "desc": "A distribution of a computer software in the sum of the stages of development and maturity for a piece of computer software.",
+      "costs": {
+         "blue": 1,
+         "white": 3,
+         "gray": 2,
+         "orange": 1
+      },
+      "letters": [
+         "F"
+      ],
+      "value": 1,
+      "card_color": "orange"
+   }
+]
