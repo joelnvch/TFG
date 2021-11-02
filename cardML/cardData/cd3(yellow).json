@@ -1,0 +1,154 @@
+[
+   {
+      "name": "Imputation of data",
+      "desc": "Process of replacing missing data with substituted (estimated) values.",
+      "costs": {
+         "blue": 2,
+         "white": 2,
+         "gray": 1,
+         "yellow": 2
+      },
+      "letters": [
+         "V"
+      ],
+      "value": 2,
+      "card_color": "yellow"
+   },
+   {
+      "name": "Data Cleaning",
+      "desc": "Detecting and correcting corrupt or inaccurate observations from a database and identifying incomplete, incorrect, inaccurate or irrelevant data features or observations and then replacing, modifying, or deleting the dirty data.",
+      "costs": {
+         "blue": 1,
+         "white": 3,
+         "gray": 2,
+         "yellow": 2
+      },
+      "letters": [
+         "N"
+      ],
+      "value": 3,
+      "card_color": "yellow"
+   },
+   {
+      "name": "Feature Transformation",
+      "desc": "Group of techniques to create new features to gain discriminatory power, using the existing ones, by scaling or normalizing, projections, transforming categorical to numerical, etc.",
+      "costs": {
+         "blue": 2,
+         "white": 1,
+         "gray": 3,
+         "yellow": 2
+      },
+      "letters": [
+         "T",
+         "F"
+      ],
+      "value": 3,
+      "card_color": "yellow"
+   },
+   {
+      "name": "Feature Selection",
+      "desc": "Techniques to select a subset of relevant features to be used in modeling stage.",
+      "costs": {
+         "blue": 4,
+         "white": 1,
+         "gray": 1,
+         "yellow": 2
+      },
+      "letters": [
+         "F"
+      ],
+      "value": 2,
+      "card_color": "yellow"
+   },
+   {
+      "name": "Dimensionality Reduction",
+      "desc": "To reduce the number of features by obtaining a set of representative features sometimes as a combination of the original ones. ",
+      "costs": {
+         "blue": 2,
+         "white": 2,
+         "gray": 2,
+         "yellow": 1
+      },
+      "letters": [
+         "C",
+         "V"
+      ],
+      "value": 1,
+      "card_color": "yellow"
+   },
+   {
+      "name": "Feature Space",
+      "desc": "Set of features used to characterize the data set. The n-dimensions where the data live.",
+      "costs": {
+         "blue": 1,
+         "white": 0,
+         "gray": 3,
+         "yellow": 3
+      },
+      "letters": [
+         "A",
+         "F"
+      ],
+      "value": 2,
+      "card_color": "yellow"
+   },
+   {
+      "name": "EDA",
+      "desc": "A set of techniques to summarize the main characteristics of a data set, often using visual methods. ",
+      "costs": {
+         "blue": 1,
+         "white": 3,
+         "gray": 1,
+         "yellow": 3
+      },
+      "letters": [
+         "M"
+      ],
+      "value": 3,
+      "card_color": "yellow"
+   },
+   {
+      "name": "ETL",
+      "desc": "Extract, Transform, and Load. ETL systems extract data from one system, transform the data and load the data into a database or data warehouse.",
+      "costs": {
+         "blue": 2,
+         "white": 4,
+         "gray": 1,
+         "yellow": 0
+      },
+      "letters": [
+         "S",
+         "V"
+      ],
+      "value": 2,
+      "card_color": "yellow"
+   },
+   {
+      "name": "Inference",
+      "desc": "A representation used in natural language processing. A text is represented as the bag of its words, disregarding grammar and even word order but keeping multiplicity.",
+      "costs": {
+         "blue": 1,
+         "white": 0,
+         "gray": 2,
+         "yellow": 3
+      },
+      "letters": [],
+      "value": 1,
+      "card_color": "yellow"
+   },
+   {
+      "name": "Data Cleaning",
+      "desc": "Detecting and correcting corrupt or inaccurate observations from a database and identifying incomplete, incorrect, inaccurate or irrelevant data features or observations and then replacing, modifying, or deleting the dirty data.",
+      "costs": {
+         "blue": 1,
+         "white": 3,
+         "gray": 2,
+         "yellow": 2
+      },
+      "letters": [
+         "N"
+      ],
+      "value": 3,
+      "card_color": "yellow"
+   }
+]
