@@ -33,7 +33,7 @@ def load_cards(path):
                 card_data = json.loads(card_file.read())
                 for card in card_data:
                     id += 1
-                    card_dict[id] = Card(**card)
+                    card_dict[id] = Card(id, **card)
                 
                 cards[keys[cont]] = card_dict
         cont += 1
