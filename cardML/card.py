@@ -1,6 +1,5 @@
 import json
 import os
-from collections import Counter
 
 
 def load_cards(path):
