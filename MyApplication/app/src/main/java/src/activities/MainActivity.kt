@@ -1,5 +1,6 @@
 package src.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -8,6 +9,11 @@ import com.chaquo.python.Python
 import view.CardView
 import kotlinx.android.synthetic.main.activity_main.*
 import src.R
+
+//global variables
+import src.MyApplication.Companion.pyBoard
+import src.MyApplication.Companion.board
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +31,9 @@ class MainActivity : AppCompatActivity() {
 
             //val card = pythonFile.callAttr("returnObj", "string").toJava(Card::class.java)
 
+            //val intent = Intent(this, MyOtherActivity::class.java)
+            //intent.putExtra("color","black")
+            //startActivity(intent)
         }
 
 
