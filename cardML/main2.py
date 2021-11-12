@@ -21,7 +21,7 @@ def init_board(board, path_all_cards):
 
                 card_data = json.loads(card_file.read())
                 for card in card_data:
-                    id+=1
+                    id += 1
                     card_dict[id] = Card(id, card['name'], card['costs'], card['letters'], card['value'], card['card_color'])
 
                 cards[COLORS[cont]] = card_dict

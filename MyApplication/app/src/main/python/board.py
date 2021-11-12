@@ -1,6 +1,8 @@
 import os
 import json
 from card import Card
+from collections import Counter
+
 
 COLORS = ["black", "blue", "yellow", "red", "green", "purple", "orange"]
 
@@ -80,10 +82,15 @@ class Board:
                 self.next_empty_pos = -1
             else:
                 self.next_empty_pos += 1
+        elif COLORS.index(color) < self.next_empty_pos:
+            pass
+        else:
+            raise Exception('No hacer nada')
+
 
         card = self.all_cards[color][card_id]
 
-        self.spots[COLORS[self.next_empty_pos]] = card
+        self.spots[color] = card
         self.board_letters.extend(card.letters)
 
         self.board_costs = dict(Counter(self.board_costs) + Counter(card.costs))

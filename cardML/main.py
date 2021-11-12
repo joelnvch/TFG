@@ -30,6 +30,11 @@ if __name__ == '__main__':
     # main2
     init_board(board1, CARD_DATA_PATH)
     board1.get_best_cards('black')
+    board1.set_card("black", 1)
+    board1.set_card("blue", 1)
+    board1.set_card("yellow", 1)
+    board1.set_card("blue", 2)
+
 
     card.get_card("Text Data", all_cards['black'])
 

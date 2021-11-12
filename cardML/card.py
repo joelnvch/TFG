@@ -26,7 +26,8 @@ def get_card(name, list):
 
 
 class Card:
-    def __init__(self, name, desc, costs, letters, value, card_color):
+    def __init__(self, id, name, costs, letters, value, card_color):
+        self.id = id
         self.name = name
         self.costs = costs
         self.letters = letters

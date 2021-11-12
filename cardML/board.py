@@ -118,6 +118,28 @@ class Board:
 
         self.board_value = self.calculate_board_value()
 
+    def set_card(self, color, card_id):
+        # validate pos
+        if COLORS.index(color) == self.next_empty_pos:
+            if self.next_empty_pos == len(COLORS) - 1:
+                self.next_empty_pos = -1
+            else:
+                self.next_empty_pos += 1
+        elif COLORS.index(color) < self.next_empty_pos:
+            pass
+        else:
+            raise Exception('No hacer nada')
+
+
+        card = self.all_cards[color][card_id]
+
+        self.spots[color] = card
+        self.board_letters.extend(card.letters)
+
+        self.board_costs = dict(Counter(self.board_costs) + Counter(card.costs))
+
+        self.board_value = self.calculate_board_value()
+
     def build_board(self, mode):
         calculated_cards = []
         while self.next_empty_pos != -1:

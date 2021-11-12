@@ -13,6 +13,7 @@ import src.R
 //global variables
 import src.MyApplication.Companion.pyBoard
 import src.MyApplication.Companion.board
+import src.utils.GameDelegate
 
 
 class MainActivity : AppCompatActivity() {
@@ -57,19 +58,25 @@ class MainActivity : AppCompatActivity() {
          //   item.value.toString()
         //}
 
-        var allCards : MutableMap<String, MutableMap<Int, CardView>> = mutableMapOf()
+        val bestCards = GameDelegate.getBestCards("black")
+        val getAllCards = GameDelegate.getAllCards("black")
+        GameDelegate.setCard("black", 1)
+        GameDelegate.setCard("blue", 1)
+        GameDelegate.setCard("yellow", 1)
+        GameDelegate.setCard("blue", 2)
 
-        var map : MutableMap<Int, CardView>
-        for (item in pythonFile.callAttr("init_board", "cardData").getValue("all_cards").asMap()){
-            map = mutableMapOf()
-            for (item2 in item.value.asMap())
-                map.put(item2.key.toInt(), CardView(item2.value))
-            allCards.put(item.key.toString(), map)
-        }
+        var spots = pyBoard.get("spots")
+        var string: String
+        var card: CardView?
 
-        val board = pythonFile.callAttr("returnBoard").toJava(BoardView::class.java)
+        if (spots != null)
+            for (item in spots.asMap()) {
+                card = CardView(item.value)
+                string = item.key.toString()
+            }
 
         pythonFile.callAttr("modifBoard", board)
+
         //val board = pythonFile.callAttr("init_board", "cardData").toJava(Board::class.java)
 
 

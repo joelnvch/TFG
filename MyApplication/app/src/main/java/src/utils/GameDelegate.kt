@@ -1,12 +1,16 @@
 package src.utils;
 
-public class GameUtil {
-    //pyBoard.callAttr("get_best_cards", "black")
-    /*
-    fun getBestCards(color: String): MutableList<CardView> {
-        var pythonFile = Python.getInstance().getModule("board")
+import com.chaquo.python.PyObject
+import com.chaquo.python.Python
+import src.MyApplication.Companion.board
+import src.MyApplication.Companion.pyBoard
+import view.CardView
 
-        val pyBestCards = pythonFile.callAttr("get_best_cards", color).asList()
+object GameDelegate {
+    //pyBoard.callAttr("get_best_cards", "black")
+
+    fun getBestCards(color: String): MutableList<CardView> {
+        val pyBestCards = pyBoard.callAttr("get_best_cards", color).asList()
         return transformPyCardList(pyBestCards)
     }
 
@@ -32,5 +36,17 @@ public class GameUtil {
             cards.add(CardView(pyCard))
 
         return cards
-    }    */
+    }
+
+    // pyBoard.get("spots")
+    fun iterateSpots(spots: PyObject){
+        var string: String
+        var card: CardView?
+
+        if (spots != null)
+            for (item in spots.asMap()) {
+                card = CardView(item.value)
+                string = item.key.toString()
+            }
+    }
 }
