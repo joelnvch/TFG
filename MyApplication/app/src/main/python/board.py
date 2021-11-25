@@ -52,8 +52,14 @@ class Board:
         return best_cards
 
 
-    def calculate_board_value(self, test_card=None):
+    def calculate_board_value(self, test_card):
         value = 0
+
+        # set temporarily current position to None in case of previous existant val
+        old_card = None
+        if self.spots[test_card.card_color] is not None:
+            old_card = self.spots[test_card.card_color]
+            self.spots[test_card.card_color] = None
 
         for card in self.spots.values():
             if card is None:
@@ -71,6 +77,9 @@ class Board:
             if rep_number > 1:
                 value += rep_number - 1
 
+        # reset old value of spot
+        if old_card:
+            self.spots[test_card.card_color] = old_card
         return value
 
     def set_card(self, color, card_id):
