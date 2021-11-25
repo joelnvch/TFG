@@ -1,44 +1,60 @@
 package src.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import view.BoardView
+import androidx.appcompat.app.AppCompatActivity
 import com.chaquo.python.Python
-import view.CardView
-import kotlinx.android.synthetic.main.activity_main.*
-import src.R
-
-//global variables
-import src.MyApplication.Companion.pyBoard
+import src.MyApplication.Companion.PACKAGE_NAME
 import src.MyApplication.Companion.board
+import src.MyApplication.Companion.pyBoard
+import src.R
+import src.model.Card
 import src.utils.GameDelegate
+import view.HexButton
 
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //val button = findViewById<Button>(R.id.button)
-        //val textView = findViewById<TextView>(R.id.textView)
 
-        //init
-        button.setOnClickListener{
-            Toast.makeText(this, "pu", Toast.LENGTH_SHORT).show()
-            //pyFuncBestCards(color) : List<Card>
-            //pyFuncCards(color) : List <Card>
+        for (i in board.COLORS.indices) {
+            var color = board.COLORS[i]
 
-            //val card = pythonFile.callAttr("returnObj", "string").toJava(Card::class.java)
+            var id = resources.getIdentifier("hb_$color", "id", PACKAGE_NAME)
+            var hexButton = findViewById<HexButton>(id)
+            var intent = Intent(this, MainActivity2::class.java)
 
-            //val intent = Intent(this, MyOtherActivity::class.java)
-            //intent.putExtra("color","black")
-            //startActivity(intent)
+            // set action
+            hexButton.setOnClickListener {
+                if (color == "black" || (board.spots[board.COLORS[i-1]] != null)) {
+                    intent.putExtra("color", color)
+                    startActivity(intent)
+                } else
+                    Toast.makeText(this@MainActivity, "Select a card for the previous position.", Toast.LENGTH_SHORT).show()
+            }
+
+            // print card values
+            if (board.spots[color] != null)
+                hexButton.setCardView(board.spots[color])
+            else
+                hexButton.setColor(color)
         }
 
+    }
 
-        textView.text = getHelloPython()
+    override fun onResume() {
+        super.onResume()
+        for (color in board.COLORS) {
+            var id = resources.getIdentifier("hb_$color", "id", PACKAGE_NAME)
+            var hexButton = findViewById<HexButton>(id)
+
+            hexButton.setCardView(board.spots[color])
+        }
+
     }
 
     private fun getHelloPython():String{
@@ -67,11 +83,11 @@ class MainActivity : AppCompatActivity() {
 
         var spots = pyBoard.get("spots")
         var string: String
-        var card: CardView?
+        var card: Card?
 
         if (spots != null)
             for (item in spots.asMap()) {
-                card = CardView(item.value)
+                card = Card(item.value)
                 string = item.key.toString()
             }
 
@@ -83,6 +99,7 @@ class MainActivity : AppCompatActivity() {
         // cambiarCarta(board, carta)
         return "a"
     }
+
 
 
 }

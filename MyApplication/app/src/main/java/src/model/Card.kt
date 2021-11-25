@@ -1,8 +1,8 @@
-package view
+package src.model
 
 import com.chaquo.python.PyObject
 
-class CardView(pyObject: PyObject){
+class Card(pyObject: PyObject){
     var id: Int
     var name: String
     var costs: MutableMap<String, Int> = mutableMapOf()
@@ -22,17 +22,8 @@ class CardView(pyObject: PyObject){
 
         value = pyObject.getValue("value").toInt()
         cardColor = pyObject.getValue("card_color").toString()
+
     }
 
 }
-
-
-    /*
-    var name: String,
-    var costs: PyObject,    //Map<Char, Int>
-    var letters: PyObject, //List<Char>,
-    var value: Int,
-    var card_color: String
-)
-*/
 

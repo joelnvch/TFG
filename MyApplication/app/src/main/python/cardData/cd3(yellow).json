@@ -137,18 +137,18 @@
       "card_color": "yellow"
    },
    {
-      "name": "Data Cleaning",
-      "desc": "Detecting and correcting corrupt or inaccurate observations from a database and identifying incomplete, incorrect, inaccurate or irrelevant data features or observations and then replacing, modifying, or deleting the dirty data.",
+      "name": "Information Entropy",
+      "desc": "A concept from information theory. It tells how much information there is in an event. In general, the more certain or deterministic the event is, the less information it will contain.",
       "costs": {
-         "blue": 1,
-         "white": 3,
-         "gray": 2,
-         "yellow": 2
+         "blue": 2,
+         "white": 0,
+         "gray": 3,
+         "yellow": 1
       },
       "letters": [
-         "N"
+         "L"
       ],
-      "value": 3,
+      "value": 1,
       "card_color": "yellow"
    }
 ]

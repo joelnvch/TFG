@@ -7,15 +7,12 @@ from collections import Counter
 COLORS = ["black", "blue", "yellow", "red", "green", "purple", "orange"]
 
 class Board:
-    def __init__(self, all_cards=None, spots=None, next_empty_pos=0, board_value=0,
-                     board_letters=[], board_costs={}):
+    def __init__(self, all_cards=None, spots=None, next_empty_pos=0, board_value=0):
         self.all_cards = all_cards
         self.spots = spots
 
         self.next_empty_pos = next_empty_pos
         self.board_value = board_value
-        self.board_letters = board_letters
-        self.board_costs = board_costs
 
 
     def get_best_cards(self, color):
@@ -34,9 +31,12 @@ class Board:
         best_cards.append(best_card)
         best_card = None
 
+
+        board_costs = self.get_letters_and_costs()[1]
+
         lowest_cost = 100
         for card in self.all_cards[color].values():
-            current_cost = sum((Counter(self.board_costs) + Counter(card.costs)).values())
+            current_cost = sum((Counter(board_costs) + Counter(card.costs)).values())
             if current_cost < lowest_cost:
                 best_card = card
                 lowest_cost = current_cost
@@ -46,7 +46,7 @@ class Board:
         high_score = -100
         for card in self.all_cards[color].values():
             current_score = self.calculate_board_value(card) - sum(
-                (Counter(self.board_costs) + Counter(card.costs)).values())
+                (Counter(board_costs) + Counter(card.costs)).values())
             if current_score > high_score:
                 best_card = card
                 high_score = current_score
@@ -63,11 +63,12 @@ class Board:
                 break
             value += card.value
 
+        board_letters = self.get_letters_and_costs()[0]
         if test_card is not None:
-            letters_rep = Counter(self.board_letters) + Counter(test_card.letters)
+            letters_rep = Counter(board_letters) + Counter(test_card.letters)
             value += test_card.value
         else:
-            letters_rep = Counter(self.board_letters)
+            letters_rep = Counter(board_letters)
 
         for rep_number in letters_rep.values():
             if rep_number > 1:
@@ -91,11 +92,17 @@ class Board:
         card = self.all_cards[color][card_id]
 
         self.spots[color] = card
-        self.board_letters.extend(card.letters)
-
-        self.board_costs = dict(Counter(self.board_costs) + Counter(card.costs))
-
         self.board_value = self.calculate_board_value()
+
+    def get_letters_and_costs(self):
+        """Iterate over board and count letters"""
+        letters_rep = []
+        costs = []
+        for color in COLORS:
+            if self.spots[color] is not None:
+                letters_rep += Counter(self.spots[color].letters)
+                costs += Counter(self.spots[color].costs)
+        return letters_rep, costs
 
 
 def init_board(path_all_cards):
@@ -126,9 +133,7 @@ def init_board(path_all_cards):
     spots = dict.fromkeys(COLORS)
     next_empty_pos = 0
     board_value = -1
-    board_letters = []
-    board_costs = {}
 
-    board = Board(all_cards, spots, next_empty_pos, board_value, board_letters, board_costs)
+    board = Board(all_cards, spots, next_empty_pos, board_value)
 
     return board
