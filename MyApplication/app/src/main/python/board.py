@@ -7,12 +7,9 @@ from collections import Counter
 COLORS = ["black", "blue", "yellow", "red", "green", "purple", "orange"]
 
 class Board:
-    def __init__(self, all_cards=None, spots=None, next_empty_pos=0, board_value=0):
+    def __init__(self, all_cards=None, spots=None):
         self.all_cards = all_cards
         self.spots = spots
-
-        self.next_empty_pos = next_empty_pos
-        self.board_value = board_value
 
 
     def get_best_cards(self, color):
@@ -77,22 +74,8 @@ class Board:
         return value
 
     def set_card(self, color, card_id):
-        # validate pos
-        if COLORS.index(color) == self.next_empty_pos:
-            if self.next_empty_pos == len(COLORS) - 1:
-                self.next_empty_pos = -1
-            else:
-                self.next_empty_pos += 1
-        elif COLORS.index(color) < self.next_empty_pos:
-            pass
-        else:
-            raise Exception('No hacer nada')
-
-
         card = self.all_cards[color][card_id]
-
         self.spots[color] = card
-        self.board_value = self.calculate_board_value()
 
     def get_letters_and_costs(self):
         """Iterate over board and count letters"""
@@ -131,9 +114,7 @@ def init_board(path_all_cards):
     # set board vals
     all_cards = cards
     spots = dict.fromkeys(COLORS)
-    next_empty_pos = 0
-    board_value = -1
 
-    board = Board(all_cards, spots, next_empty_pos, board_value)
+    board = Board(all_cards, spots)
 
     return board
