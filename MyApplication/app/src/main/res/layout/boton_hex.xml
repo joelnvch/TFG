@@ -76,7 +76,6 @@
                 android:layout_width="124dp"
                 android:layout_height="126dp" android:id="@+id/btHex" android:layout_weight="1"
                 android:backgroundTint="@color/clear"
-                tools:ignore="MissingConstraints"
                 app:layout_constraintBottom_toBottomOf="@+id/tvNombre"
                 app:layout_constraintStart_toStartOf="@+id/tvNombre"
                 app:layout_constraintTop_toTopOf="@+id/tvNombre"
