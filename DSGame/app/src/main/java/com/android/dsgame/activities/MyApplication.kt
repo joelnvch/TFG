@@ -8,7 +8,6 @@ import com.chaquo.python.android.AndroidPlatform
 
 class MyApplication : Application(){
     companion object{
-        val CONTEXT = this
         lateinit var PACKAGE_NAME: String
 
         lateinit var pyBoard: PyObject

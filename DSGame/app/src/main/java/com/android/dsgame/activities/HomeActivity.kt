@@ -6,26 +6,26 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.dsgame.activities.MyApplication.Companion.PACKAGE_NAME
 import com.android.dsgame.activities.MyApplication.Companion.board
-import com.android.dsgame.databinding.ActivityMainBinding
+import com.android.dsgame.databinding.ActivityHomeBinding
 import com.android.dsgame.view.HexButton
 
 
-private lateinit var binding: ActivityMainBinding
+private lateinit var binding: ActivityHomeBinding
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
         for (i in board.COLORS.indices) {
-            var color = board.COLORS[i]
+            val color = board.COLORS[i]
 
-            var id = resources.getIdentifier("hb_$color", "id", PACKAGE_NAME)
-            var hexButton = findViewById<HexButton>(id)
-            var intent = Intent(this, MainActivity2::class.java)
+            val id = resources.getIdentifier("hb_$color", "id", PACKAGE_NAME)
+            val hexButton = findViewById<HexButton>(id)
+            val intent = Intent(this, MainActivity2::class.java)
 
             // set action
             hexButton.setOnClickListener {
@@ -48,8 +48,8 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         for (color in board.COLORS) {
-            var id = resources.getIdentifier("hb_$color", "id", PACKAGE_NAME)
-            var hexButton = findViewById<HexButton>(id)
+            val id = resources.getIdentifier("hb_$color", "id", PACKAGE_NAME)
+            val hexButton = findViewById<HexButton>(id)
 
             hexButton.setCardView(board.spots[color])
         }

@@ -4,28 +4,28 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.dsgame.databinding.ActivityMain2Binding
+import com.android.dsgame.databinding.ActivitySelectionBinding
 import layout.AdaptadorHex
 import com.android.dsgame.utils.GameDelegate
 import com.android.dsgame.model.TripleCard
 
 
-private lateinit var binding: ActivityMain2Binding
+private lateinit var binding: ActivitySelectionBinding
 
 class MainActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMain2Binding.inflate(layoutInflater)
+        binding = ActivitySelectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var bundle = intent.extras
+        val bundle = intent.extras
         var color = ""
         if (bundle != null)
             color = bundle.getString("color").toString()
 
 
         // BEST CARDS SECTION
-        var bestCards = GameDelegate.getBestCards(color)
+        val bestCards = GameDelegate.getBestCards(color)
 
         binding.hbCard1.setCardView(bestCards[0])
         binding.hbCard2.setCardView(bestCards[1])
@@ -46,10 +46,10 @@ class MainActivity2 : AppCompatActivity() {
 
 
         // ALL CARDS SECTION
-        var allCards = GameDelegate.getAllCards(color)
+        val allCards = GameDelegate.getAllCards(color)
 
         var tripleCard = TripleCard(color)
-        var tripleCardList = mutableListOf<TripleCard>()
+        val tripleCardList = mutableListOf<TripleCard>()
         for (i in allCards.indices) {
             if ((i+1) % 3 == 1){
                 tripleCard = TripleCard(color)

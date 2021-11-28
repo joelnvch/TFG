@@ -10,7 +10,7 @@
   <TextView
           android:text="Log In"
           android:layout_width="139dp"
-          android:layout_height="61dp" android:id="@+id/textView4"
+          android:layout_height="61dp" android:id="@+id/tvLogin"
           android:textSize="48sp" app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
           android:layout_marginTop="92dp"/>
@@ -20,8 +20,8 @@
           android:inputType="textPersonName"
           android:text="Name"
           android:ems="10"
-          android:id="@+id/editTextTextPersonName"
-          app:layout_constraintTop_toBottomOf="@+id/textView4"
+          android:id="@+id/username"
+          app:layout_constraintTop_toBottomOf="@+id/tvLogin"
           android:layout_marginTop="152dp" app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.503"/>
   <EditText
@@ -29,15 +29,15 @@
           android:layout_height="43dp"
           android:inputType="textPassword"
           android:ems="10"
-          android:id="@+id/editTextTextPassword"
-          app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+          android:id="@+id/password"
+          app:layout_constraintTop_toBottomOf="@+id/username"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.503"
           android:layout_marginTop="32dp"/>
   <ImageView
           android:layout_width="135dp"
           android:layout_height="109dp" app:srcCompat="@drawable/login_button" android:id="@+id/imageView2"
-          app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+          app:layout_constraintTop_toBottomOf="@+id/password"
           app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.46"
           app:layout_constraintVertical_bias="0.414"/>
