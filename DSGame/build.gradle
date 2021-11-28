@@ -1,0 +1,24 @@
+buildscript {
+    ext.kotlin_version = "1.6.0"
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://chaquo.com/maven" }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.2.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.chaquo.python:gradle:10.0.1"
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

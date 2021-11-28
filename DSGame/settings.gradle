@@ -1,0 +1,2 @@
+rootProject.name = "DSGame"
+include ':app'
