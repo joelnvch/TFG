@@ -6,7 +6,7 @@
 
     <ImageView
             android:layout_width="145dp"
-            android:layout_height="145dp" app:srcCompat="@drawable/orange_hexagon" android:id="@+id/ivHex"
+            android:layout_height="145dp" app:srcCompat="@drawable/black_hexagon" android:id="@+id/ivHex"
             android:rotation="90"
 
             tools:ignore="VectorDrawableCompat"/>

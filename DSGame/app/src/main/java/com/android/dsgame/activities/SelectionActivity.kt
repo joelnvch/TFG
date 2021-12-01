@@ -10,12 +10,11 @@ import com.android.dsgame.utils.GameDelegate
 import com.android.dsgame.model.TripleCard
 
 
-private lateinit var binding: ActivitySelectionBinding
+class SelectionActivity : AppCompatActivity() {
+    private val binding = ActivitySelectionBinding.inflate(layoutInflater)
 
-class MainActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySelectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val bundle = intent.extras
@@ -33,15 +32,15 @@ class MainActivity2 : AppCompatActivity() {
 
         binding.hbCard1.setOnClickListener {
             GameDelegate.setCard(color, bestCards[0].id)
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
         }
         binding.hbCard2.setOnClickListener {
             GameDelegate.setCard(color, bestCards[1].id)
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
         }
         binding.hbCard3.setOnClickListener {
             GameDelegate.setCard(color, bestCards[2].id)
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
         }
 
 

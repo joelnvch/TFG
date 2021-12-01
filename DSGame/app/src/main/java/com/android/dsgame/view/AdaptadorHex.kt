@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.dsgame.R
-import com.android.dsgame.activities.MainActivity
+import com.android.dsgame.activities.HomeActivity
 import com.android.dsgame.model.TripleCard
 import com.android.dsgame.utils.GameDelegate
 import com.android.dsgame.view.HexButton
@@ -49,14 +49,14 @@ class AdaptadorHex (private val dataSet: Array<TripleCard>) :
             viewHolder.bestCard1.setCardView(tripleCard.card1)
             viewHolder.bestCard1.setOnClickListener {
                 GameDelegate.setCard(tripleCard.color, tripleCard.card1!!.id)
-                viewHolder.context.startActivity(Intent(viewHolder.context, MainActivity::class.java))
+                viewHolder.context.startActivity(Intent(viewHolder.context, HomeActivity::class.java))
             }
 
             if (tripleCard.card2 != null) {
                 viewHolder.bestCard2.setCardView(tripleCard.card2)
                 viewHolder.bestCard2.setOnClickListener {
                     GameDelegate.setCard(tripleCard.color, tripleCard.card2!!.id)
-                    viewHolder.context.startActivity(Intent(viewHolder.context, MainActivity::class.java))
+                    viewHolder.context.startActivity(Intent(viewHolder.context, HomeActivity::class.java))
                 }
             } else
                 viewHolder.bestCard2.visibility = View.GONE
@@ -65,7 +65,7 @@ class AdaptadorHex (private val dataSet: Array<TripleCard>) :
                 viewHolder.bestCard3.setCardView(tripleCard.card3)
                 viewHolder.bestCard3.setOnClickListener {
                     GameDelegate.setCard(tripleCard.color, tripleCard.card3!!.id)
-                    viewHolder.context.startActivity(Intent(viewHolder.context, MainActivity::class.java))
+                    viewHolder.context.startActivity(Intent(viewHolder.context, HomeActivity::class.java))
                 }
             } else
                 viewHolder.bestCard3.visibility = View.GONE

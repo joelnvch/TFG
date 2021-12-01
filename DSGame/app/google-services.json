@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "358427498303",
+    "project_id": "dsgame-638ff",
+    "storage_bucket": "dsgame-638ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358427498303:android:4557fa387d37f2f5ec658a",
+        "android_client_info": {
+          "package_name": "com.android.dsgame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358427498303-0siu7p039jucj885ojmj15t1mcsd02f3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhCAIH6PLDcFUWNEaotrRZUw_YiTwCV6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358427498303-0siu7p039jucj885ojmj15t1mcsd02f3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

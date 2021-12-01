@@ -10,13 +10,12 @@ import com.android.dsgame.databinding.ActivityHomeBinding
 import com.android.dsgame.view.HexButton
 
 
-private lateinit var binding: ActivityHomeBinding
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
+    private val binding = ActivityHomeBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
             val id = resources.getIdentifier("hb_$color", "id", PACKAGE_NAME)
             val hexButton = findViewById<HexButton>(id)
-            val intent = Intent(this, MainActivity2::class.java)
+            val intent = Intent(this, SelectionActivity::class.java)
 
             // set action
             hexButton.setOnClickListener {
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                     intent.putExtra("color", color)
                     startActivity(intent)
                 } else
-                    Toast.makeText(this@MainActivity, "Select a card for the previous position.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@HomeActivity, "Select a card for the previous position.", Toast.LENGTH_SHORT).show()
             }
 
             // print card values
