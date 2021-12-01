@@ -18,9 +18,8 @@
             app:layout_constraintHorizontal_bias="0.501"
             android:id="@+id/hb_black"
             android:layout_marginStart="-2dp"
-            >
+            app:layout_constraintVertical_bias="0.52">
     </com.android.dsgame.view.HexButton>
-
     <com.android.dsgame.view.HexButton
             android:layout_width="140dp"
             android:layout_height="135dp"
@@ -121,12 +120,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="5dp"/>
 
-    "my board 69"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.497"
-    app:layout_constraintBottom_toTopOf="@+id/hb_blue"
-    android:layout_marginBottom="5dp"/>
 
     <EditText
             android:layout_width="wrap_content"
@@ -144,7 +137,7 @@
             android:layout_marginBottom="10dp"/>
 
     <TextView
-            android:text="Score: 23"
+            android:text="Score: "
             android:layout_width="171dp"
             android:layout_height="26dp"
             android:id="@+id/tvScore"
@@ -160,7 +153,7 @@
             android:layout_width="26dp"
             android:layout_height="25dp"
             app:srcCompat="@android:drawable/ic_menu_edit"
-            android:id="@+id/imageView7"
+            android:id="@+id/ivPen"
             app:layout_constraintStart_toStartOf="@+id/etBoardName"
             android:layout_marginStart="235dp"
             app:layout_constraintBottom_toBottomOf="@+id/etBoardName"

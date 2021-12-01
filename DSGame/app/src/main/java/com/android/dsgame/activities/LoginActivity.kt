@@ -9,17 +9,17 @@ import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 
 
-
 class LoginActivity : AppCompatActivity() {
-    private val auth = FirebaseAuth.getInstance()
-    private val binding =  ActivityLoginBinding.inflate(layoutInflater)
+    private lateinit var binding: ActivityLoginBinding
+    private val firebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btLogin.setOnClickListener {
-            auth.signInWithEmailAndPassword(binding.email.toString(), binding.password.toString())
+            firebaseAuth.signInWithEmailAndPassword(binding.etEmail.text.toString(), binding.etPassword.text.toString())
                 .addOnSuccessListener {
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)

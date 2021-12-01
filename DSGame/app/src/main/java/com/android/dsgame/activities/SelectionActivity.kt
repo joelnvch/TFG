@@ -11,10 +11,11 @@ import com.android.dsgame.model.TripleCard
 
 
 class SelectionActivity : AppCompatActivity() {
-    private val binding = ActivitySelectionBinding.inflate(layoutInflater)
+    private lateinit var binding: ActivitySelectionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivitySelectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val bundle = intent.extras

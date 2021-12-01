@@ -8,16 +8,17 @@ import com.android.dsgame.activities.MyApplication.Companion.PACKAGE_NAME
 import com.android.dsgame.activities.MyApplication.Companion.board
 import com.android.dsgame.databinding.ActivityHomeBinding
 import com.android.dsgame.view.HexButton
-
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class HomeActivity : AppCompatActivity() {
-    private val binding = ActivityHomeBinding.inflate(layoutInflater)
+    private lateinit var binding: ActivityHomeBinding
+    private val database = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         for (i in board.COLORS.indices) {
             val color = board.COLORS[i]
@@ -26,7 +27,7 @@ class HomeActivity : AppCompatActivity() {
             val hexButton = findViewById<HexButton>(id)
             val intent = Intent(this, SelectionActivity::class.java)
 
-            // set action
+            // LINK WITH SELECTION ACTIVITY
             hexButton.setOnClickListener {
                 if (color == "black" || (board.spots[board.COLORS[i-1]] != null)) {
                     intent.putExtra("color", color)
@@ -35,22 +36,32 @@ class HomeActivity : AppCompatActivity() {
                     Toast.makeText(this@HomeActivity, "Select a card for the previous position.", Toast.LENGTH_SHORT).show()
             }
 
-            // print card values
+            // UPDATE VISIBLE BOARD
             if (board.spots[color] != null)
                 hexButton.setCardView(board.spots[color])
             else
                 hexButton.setColor(color)
         }
 
-    }
 
-    override fun onResume() {
-        super.onResume()
-        for (color in board.COLORS) {
-            val id = resources.getIdentifier("hb_$color", "id", PACKAGE_NAME)
-            val hexButton = findViewById<HexButton>(id)
-
-            hexButton.setCardView(board.spots[color])
+        // SAVE BOARD
+        binding.btSave.setOnClickListener{
+            val data = hashMapOf(
+                "name" to "Tokyo",
+                "country" to "Japan"
+            )
+            database.collection("board_history").document("LA")
+                .set(board.spots)
+                .addOnSuccessListener {
+                    Toast.makeText(this@HomeActivity,
+                        "ok", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this@HomeActivity,
+                        "error", Toast.LENGTH_SHORT).show()
+                }
         }
+
     }
+
 }

@@ -5,6 +5,7 @@ import com.android.dsgame.model.Board
 import com.chaquo.python.PyObject
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
+import com.google.firebase.auth.FirebaseAuth
 
 class MyApplication : Application(){
     companion object{

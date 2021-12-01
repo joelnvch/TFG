@@ -11,16 +11,21 @@ import com.google.firebase.auth.FirebaseAuth
 
 
 class RegisterActivity : AppCompatActivity() {
-    private val auth = FirebaseAuth.getInstance()
-    private val binding = ActivityRegisterBinding.inflate(layoutInflater)
+    private lateinit var binding: ActivityRegisterBinding
+    private val firebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
         binding.btSignup.setOnClickListener {
-            if (binding.password.toString() != binding.repeatedPassword.toString())
+            var email = binding.etEmail.text.toString()
+            var password = binding.etPassword.text.toString()
+            var repeatedPassword = binding.repeatedPassword.text.toString()
+
+            if (password != repeatedPassword) {
                 AlertDialog.Builder(this).apply {
                     setTitle("Error signing up")
                     setMessage("Passwords don't match.")
@@ -29,10 +34,11 @@ class RegisterActivity : AppCompatActivity() {
                         null
                     )
                 }.show()
+                return@setOnClickListener
+            }
 
-            auth.createUserWithEmailAndPassword(binding.email.toString(), binding.password.toString())
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener{
-                    val cu = auth.currentUser
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                 }
