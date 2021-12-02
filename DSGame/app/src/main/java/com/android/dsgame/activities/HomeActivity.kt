@@ -69,13 +69,16 @@ class HomeActivity : AppCompatActivity() {
             os.close()
             fos.close()
 
-            var pythonBoad = PyObject.fromJava(board)
 
             /*
             here we should save "filename" to DB
             cant save data to firestore firebase, read:
             https://stackoverflow.com/questions/49529957/uploading-and-downloading-files-to-from-google-cloud-firestore
+            https://firebase.google.com/docs/storage/android/upload-files
 
+            val storage = FirebaseStorage.getInstance()
+            val storageRef = storage.reference
+             
              instead of saving and retrieving, we could create a new pyBoard based on board
              */
 
