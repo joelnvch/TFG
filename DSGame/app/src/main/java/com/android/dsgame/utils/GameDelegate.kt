@@ -21,10 +21,12 @@ object GameDelegate {
 
     //METHOD CALLED IN THE SECOND SCREEN
     fun setCard(color: String, cardId: Int) {
-        // update logic object
+        // update py object
         pyBoard.callAttr("set_card", color, cardId)
+
         // update view object
         board.spots[color] = board.allCards.getValue(color).getValue(cardId)
+        board.score = pyBoard.getValue("score").toInt()
     }
 
 

@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
                         setTitle("Error singing in")
                         setMessage("Incorrect username or password.")
                         setPositiveButton(
-                            Html.fromHtml("<font color='#FFFFFF'>OK</font>"),
+                            "OK",
                             null
                         )
                     }.show()

@@ -20,6 +20,7 @@
             android:layout_marginStart="-2dp"
             app:layout_constraintVertical_bias="0.52">
     </com.android.dsgame.view.HexButton>
+
     <com.android.dsgame.view.HexButton
             android:layout_width="140dp"
             android:layout_height="135dp"

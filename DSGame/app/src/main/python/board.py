@@ -10,6 +10,7 @@ class Board:
     def __init__(self, all_cards=None, spots=None):
         self.all_cards = all_cards
         self.spots = spots
+        self.score = 0
 
 
     def get_best_cards(self, color):
@@ -52,20 +53,22 @@ class Board:
         return best_cards
 
 
-    def calculate_board_value(self, test_card):
+    def calculate_board_value(self, test_card=None):
         value = 0
 
         # set temporarily current position to None in case of previous existant val
         old_card = None
-        if self.spots[test_card.card_color] is not None:
+        if (test_card is not None) and (self.spots[test_card.card_color] is not None):
             old_card = self.spots[test_card.card_color]
             self.spots[test_card.card_color] = None
 
+        # add values of all current board cards
         for card in self.spots.values():
             if card is None:
                 break
             value += card.value
 
+        # if repeated letters add extra points, also add test_card value
         board_letters = self.get_letters_and_costs()[0]
         if test_card is not None:
             letters_rep = Counter(board_letters) + Counter(test_card.letters)
@@ -85,6 +88,7 @@ class Board:
     def set_card(self, color, card_id):
         card = self.all_cards[color][card_id]
         self.spots[color] = card
+        self.score = self.calculate_board_value()
 
     def get_letters_and_costs(self):
         """Iterate over board and count letters"""
