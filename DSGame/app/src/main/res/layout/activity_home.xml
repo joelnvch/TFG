@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         tools:context="com.android.dsgame.activities.HomeActivity">
 
-    <com.android.dsgame.view.HexButton
+    <com.android.dsgame.view.CardElement
             android:layout_width="140dp"
             android:layout_height="135dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -19,9 +19,9 @@
             android:id="@+id/hb_black"
             android:layout_marginStart="-2dp"
             app:layout_constraintVertical_bias="0.52">
-    </com.android.dsgame.view.HexButton>
+    </com.android.dsgame.view.CardElement>
 
-    <com.android.dsgame.view.HexButton
+    <com.android.dsgame.view.CardElement
             android:layout_width="140dp"
             android:layout_height="135dp"
             android:layout_marginBottom="135dp"
@@ -30,9 +30,9 @@
             app:layout_constraintEnd_toEndOf="@+id/hb_black"
             android:id="@+id/hb_blue">
 
-    </com.android.dsgame.view.HexButton>
+    </com.android.dsgame.view.CardElement>
 
-    <com.android.dsgame.view.HexButton
+    <com.android.dsgame.view.CardElement
             android:layout_width="140dp"
             android:layout_height="135dp"
             android:layout_marginEnd="119dp"
@@ -42,7 +42,7 @@
             android:layout_marginBottom="64dp"
             android:id="@+id/hb_orange"/>
 
-    <com.android.dsgame.view.HexButton
+    <com.android.dsgame.view.CardElement
             android:layout_width="140dp"
             android:layout_height="135dp"
             android:id="@+id/hb_purple"
@@ -52,7 +52,7 @@
             android:layout_marginRight="119dp"
             app:layout_constraintEnd_toEndOf="@+id/hb_black"/>
 
-    <com.android.dsgame.view.HexButton
+    <com.android.dsgame.view.CardElement
             android:layout_width="140dp"
             android:layout_height="135dp"
             android:layout_marginTop="135dp"
@@ -61,7 +61,7 @@
             app:layout_constraintStart_toStartOf="@+id/hb_black"
             android:id="@+id/hb_green"/>
 
-    <com.android.dsgame.view.HexButton
+    <com.android.dsgame.view.CardElement
             android:layout_width="140dp"
             android:layout_height="135dp"
             android:id="@+id/hb_yellow"
@@ -71,7 +71,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/hb_black"
             android:layout_marginBottom="64dp"/>
 
-    <com.android.dsgame.view.HexButton
+    <com.android.dsgame.view.CardElement
             android:layout_width="140dp"
             android:layout_height="135dp"
             android:layout_marginTop="71dp"
@@ -88,7 +88,6 @@
             android:id="@+id/imageView2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
@@ -126,12 +125,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:text="My Board"
             android:ems="10"
+            android:backgroundTint="@android:color/holo_blue_dark"
             android:id="@+id/etBoardName"
             android:gravity="center"
             android:textSize="20sp"
-            android:maxLength="10"
+            android:maxLength="20"
             app:layout_constraintBottom_toTopOf="@+id/hb_blue"
             app:layout_constraintEnd_toEndOf="@+id/hb_black"
             app:layout_constraintStart_toStartOf="@+id/hb_black"

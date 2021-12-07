@@ -1,6 +1,6 @@
 import os
 import json
-from card import Card
+from card import *
 from collections import Counter
 
 
@@ -28,7 +28,6 @@ class Board:
                 highest_val = current_value
         best_cards.append(best_card)
         best_card = None
-
 
         board_costs = self.get_letters_and_costs()[1]
 
@@ -99,6 +98,11 @@ class Board:
                 letters_rep += Counter(self.spots[color].letters)
                 costs += Counter(self.spots[color].costs)
         return letters_rep, costs
+
+    def update_board(self, kt_board):
+        self.score = kt_board.getScore()
+        for color in COLORS:
+            self.spots[color] = transform_card(kt_board.getSpots().get(color))
 
 
 def init_board(path_all_cards):

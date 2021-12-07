@@ -1,21 +1,23 @@
-package com.android.dsgame.utils;
+package com.android.dsgame.managers;
 
+import com.android.dsgame.activities.MyApplication
 import com.chaquo.python.PyObject
 import com.android.dsgame.activities.MyApplication.Companion.board
 import com.android.dsgame.activities.MyApplication.Companion.pyBoard
+import com.android.dsgame.model.Board
 import com.android.dsgame.model.Card
 
-object GameDelegate {
-    //pyBoard.callAttr("get_best_cards", "black")
+object GameManager {
+    val ALL_CARDS = mutableMapOf<String, MutableMap<Int, Card>>()
+    val COLORS = arrayOf("black", "blue", "yellow", "red", "green", "purple", "orange")
 
     fun getBestCards(color: String): MutableList<Card> {
         val pyBestCards = pyBoard.callAttr("get_best_cards", color).asList()
         return transformPyCardList(pyBestCards)
     }
 
-    // better this than to call python and iterate list multiple times when it can be done just once when object initialization
-    fun getAllCards(color: String): MutableList<Card> {
-        return board.allCards.getValue(color).values.toMutableList()
+    fun getCardsByColor(color: String): MutableList<Card> {
+        return ALL_CARDS.getValue(color).values.toMutableList()
     }
 
 
@@ -25,10 +27,15 @@ object GameDelegate {
         pyBoard.callAttr("set_card", color, cardId)
 
         // update view object
-        board.spots[color] = board.allCards.getValue(color).getValue(cardId)
+        board.spots[color] = ALL_CARDS.getValue(color).getValue(cardId)
         board.score = pyBoard.getValue("score").toInt()
     }
 
+
+    fun updateBoard(board: Board){
+        MyApplication.board = board
+        pyBoard.callAttr("update_board", board)
+    }
 
     // AUX
     fun transformPyCardList(pyCards: List<PyObject>): MutableList<Card>{

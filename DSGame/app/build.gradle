@@ -16,12 +16,12 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.android.dsgame"
-        minSdk = 19
-        targetSdk = 31
-        versionCode = 1
-        versionName = "1.0"
-        multiDexEnabled = true
+        applicationId "com.android.dsgame"
+        minSdkVersion 23
+        targetSdkVersion 31
+        versionCode 1
+        versionName "1.0"
+
 
 
         sourceSets{
@@ -35,9 +35,6 @@ android {
         ndk{
             abiFilters "armeabi-v7a", "x86"
         }
-
-        vectorDrawables.useSupportLibrary = true
-
     }
 
     buildTypes {
@@ -47,16 +44,25 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
 
-    implementation platform('com.google.firebase:firebase-bom:29.0.0')
+
+    implementation platform('com.google.firebase:firebase-bom:27.0.0')
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
 }

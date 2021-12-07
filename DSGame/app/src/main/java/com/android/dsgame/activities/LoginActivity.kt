@@ -1,28 +1,47 @@
 package com.android.dsgame.activities
 
+import android.R.attr.name
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Html
-import com.android.dsgame.databinding.ActivityLoginBinding
 import androidx.appcompat.app.AlertDialog
-import com.google.firebase.auth.FirebaseAuth
+import androidx.appcompat.app.AppCompatActivity
+import com.android.dsgame.activities.MyApplication.Companion.board
+import com.android.dsgame.databinding.ActivityLoginBinding
+import com.android.dsgame.managers.ConnectionManager
 
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private val firebaseAuth = FirebaseAuth.getInstance()
+    private var connectionManager = ConnectionManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (connectionManager.authenticator.currentUser != null) {
+            // User is signed in
+            val i = Intent(this@LoginActivity, HomeActivity::class.java)
+            startActivity(i)
+        }
+
         binding.btLogin.setOnClickListener {
-            firebaseAuth.signInWithEmailAndPassword(binding.etEmail.text.toString(), binding.etPassword.text.toString())
+            if (binding.etEmail.text.toString() == "" || binding.etPassword.text.toString() == "") {
+                AlertDialog.Builder(this).apply {
+                    setTitle("Error singing in")
+                    setMessage("Incorrect username or password.")
+                    setPositiveButton(
+                        "OK",
+                        null
+                    )
+                }.show()
+                return@setOnClickListener
+            }
+
+            connectionManager.authenticator.signInWithEmailAndPassword(binding.etEmail.text.toString(), binding.etPassword.text.toString())
                 .addOnSuccessListener {
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
+                    board.userId = connectionManager.authenticator.currentUser!!.uid
+                    startActivity(Intent(this, HomeActivity::class.java))
                 }
                 .addOnFailureListener {
                     AlertDialog.Builder(this).apply {
@@ -37,9 +56,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btSignup.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
-
     }
 }

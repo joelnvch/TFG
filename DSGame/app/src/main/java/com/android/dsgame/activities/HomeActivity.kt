@@ -1,123 +1,121 @@
 package com.android.dsgame.activities
 
-import android.content.Context
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.android.dsgame.activities.MyApplication.Companion.PACKAGE_NAME
 import com.android.dsgame.activities.MyApplication.Companion.board
-import com.android.dsgame.activities.MyApplication.Companion.pyBoard
 import com.android.dsgame.databinding.ActivityHomeBinding
-import com.android.dsgame.view.HexButton
-import com.chaquo.python.PyObject
+import com.android.dsgame.managers.ConnectionManager
+import com.android.dsgame.managers.GameManager.COLORS
+import com.android.dsgame.view.CardElement
 import com.google.firebase.firestore.FirebaseFirestore
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.ObjectInputStream
-import java.io.ObjectOutputStream
+import com.google.firebase.firestore.Query
+import java.util.*
 
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
+    private var connectionManager = ConnectionManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val intent = Intent(this, SelectionActivity::class.java)
-        for (i in board.COLORS.indices) {
-            val color = board.COLORS[i]
+        // SET NAME BOARD VALUE
+        binding.etBoardName.setText(board.name)
+
+        for (i in COLORS.indices) {
+            val intent = Intent(this, SelectionActivity::class.java)
+            val color = COLORS[i]
 
             val id = resources.getIdentifier("hb_$color", "id", PACKAGE_NAME)
-            val hexButton = findViewById<HexButton>(id)
+            val cardElement = findViewById<CardElement>(id)
 
             // LINK WITH SELECTION ACTIVITY
-            hexButton.setOnClickListener {
-                if (color == "black" || (board.spots[board.COLORS[i-1]] != null)) {
+            cardElement.setOnClickListener {
+                if (color == "black" || (board.spots[COLORS[i-1]] != null)) {
+                    board.name = binding.etBoardName.text.toString() // save board name
                     intent.putExtra("color", color)
                     startActivity(intent)
                 } else
                     Toast.makeText(this@HomeActivity, "Select a card for the previous position.", Toast.LENGTH_SHORT).show()
             }
 
-            // UPDATE VISIBLE BOARD
+            // UPDATE VISUAL ELEMENTS
             if (board.spots[color] != null)
-                hexButton.setCardView(board.spots[color])
+                cardElement.setCardView(board.spots[color])
             else
-                hexButton.setColor(color)
+                cardElement.setColor(color)
         }
+
 
         // UPDATE SCORE
         binding.tvScore.text = binding.tvScore.text.toString() + board.score
 
 
+
         // SAVE BOARD
         binding.btSave.setOnClickListener{
-            val database = FirebaseFirestore.getInstance()
-            // we have to save Board and pyBoard as data files
-            // for now we'll save it as is, next changes could be Board.COLORS and allCards
-            // initialized in corresponding classes.
-            // https://stackoverflow.com/questions/4118751/how-do-i-serialize-an-object-and-save-it-to-a-file-in-android
+            board.name = binding.etBoardName.text.toString()
+            board.date = Calendar.getInstance().time
 
-            // cant serialize pyObject, this is needed
-            val fos: FileOutputStream = this.openFileOutput("filename", Context.MODE_PRIVATE)
-            val os = ObjectOutputStream(fos)
-            os.writeObject(pyBoard)
-            os.close()
-            fos.close()
-
-
-            /*
-            here we should save "filename" to DB
-            cant save data to firestore firebase, read:
-            https://stackoverflow.com/questions/49529957/uploading-and-downloading-files-to-from-google-cloud-firestore
-            https://firebase.google.com/docs/storage/android/upload-files
-
-            val storage = FirebaseStorage.getInstance()
-            val storageRef = storage.reference
-             
-             instead of saving and retrieving, we could create a new pyBoard based on board
-             */
-
-            // to recover data try this
-            val fis: FileInputStream = this.openFileInput("fileName")
-            val iss = ObjectInputStream(fis)
-            pyBoard = iss.readObject() as PyObject
-            iss.close()
-            fis.close()
+            connectionManager.database.collection("Boards")
+                .whereEqualTo("userId", connectionManager.authenticator.currentUser!!.uid)
+                .orderBy("date", Query.Direction.ASCENDING)
+                .get()
+                .addOnSuccessListener {queryResult ->
+                    if (queryResult.size() >= 10)
+                        connectionManager.database.collection("Boards").document(queryResult.documents[0].id)
+                            .delete()
+                            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted") }
+                            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+                }
 
 
 
-            // why yesterday board save failed (crashes when null value present):
-            //https://stackoverflow.com/questions/47560647/firebase-save-object-with-map-property
-            database.collection("board_history").document("LA") // boardHistoryRef
-                .set(board.spots)
+
+            connectionManager.database.collection("Boards") // boardHistoryRef
+                .add(board)
                 .addOnSuccessListener {
-                    Toast.makeText(this@HomeActivity,
-                        "Board succesfully saved.", Toast.LENGTH_SHORT).show()
+                    Log.d(TAG, "Element saved.")
+                    Toast.makeText(
+                        this,
+                        "Board succesfully saved.", Toast.LENGTH_SHORT
+                    ).show()
                 }
                 .addOnFailureListener {
+                    Log.d(TAG, "Error saving.")
                     AlertDialog.Builder(this).apply {
-                        setMessage("Check your connection or try again.")
+                        setMessage("Error saving board. \nCheck your connection or try again.")
                         setPositiveButton(
                             "OK",
                             null
                         )
                     }.show()
                 }
-
-            database.collection("a").document("la").set("a")
         }
+
 
         // BOARD HISTORY
         binding.btHistory.setOnClickListener{
-            val intent = Intent(this, HistoryActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, HistoryActivity::class.java))
         }
 
+
+        // LOG OUT
+        binding.btLogout.setOnClickListener{
+            connectionManager.authenticator.signOut()
+            var intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
     }
+
 
 }

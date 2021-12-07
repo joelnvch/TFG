@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.text.Html
 import androidx.appcompat.app.AlertDialog
 import com.android.dsgame.databinding.ActivityRegisterBinding
+import com.android.dsgame.managers.ConnectionManager
 import com.google.firebase.auth.FirebaseAuth
 
 
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private val firebaseAuth = FirebaseAuth.getInstance()
+    private var connectionManager = ConnectionManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +38,7 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            firebaseAuth.createUserWithEmailAndPassword(email, password)
+            connectionManager.authenticator.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener{
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)

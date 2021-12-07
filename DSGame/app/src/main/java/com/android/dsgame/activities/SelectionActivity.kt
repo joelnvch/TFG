@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.dsgame.databinding.ActivitySelectionBinding
-import layout.AdaptadorHex
-import com.android.dsgame.utils.GameDelegate
+import com.android.dsgame.view.adaptors.CardElementAdaptor
+import com.android.dsgame.managers.GameManager
 import com.android.dsgame.model.TripleCard
 
 
@@ -25,28 +25,28 @@ class SelectionActivity : AppCompatActivity() {
 
 
         // BEST CARDS SECTION
-        val bestCards = GameDelegate.getBestCards(color)
+        val bestCards = GameManager.getBestCards(color)
 
         binding.hbCard1.setCardView(bestCards[0])
         binding.hbCard2.setCardView(bestCards[1])
         binding.hbCard3.setCardView(bestCards[2])
 
         binding.hbCard1.setOnClickListener {
-            GameDelegate.setCard(color, bestCards[0].id)
+            GameManager.setCard(color, bestCards[0].id!!)
             startActivity(Intent(this, HomeActivity::class.java))
         }
         binding.hbCard2.setOnClickListener {
-            GameDelegate.setCard(color, bestCards[1].id)
+            GameManager.setCard(color, bestCards[1].id!!)
             startActivity(Intent(this, HomeActivity::class.java))
         }
         binding.hbCard3.setOnClickListener {
-            GameDelegate.setCard(color, bestCards[2].id)
+            GameManager.setCard(color, bestCards[2].id!!)
             startActivity(Intent(this, HomeActivity::class.java))
         }
 
 
         // ALL CARDS SECTION
-        val allCards = GameDelegate.getAllCards(color)
+        val allCards = GameManager.getCardsByColor(color)
 
         var tripleCard = TripleCard(color)
         val tripleCardList = mutableListOf<TripleCard>()
@@ -64,7 +64,7 @@ class SelectionActivity : AppCompatActivity() {
                 tripleCardList.add(tripleCard)
         }
 
-        binding.listaBotones.layoutManager = LinearLayoutManager(this)
-        binding.listaBotones.adapter = AdaptadorHex(tripleCardList.toTypedArray())
+        binding.cardList.layoutManager = LinearLayoutManager(this)
+        binding.cardList.adapter = CardElementAdaptor(tripleCardList.toTypedArray())
     }
 }

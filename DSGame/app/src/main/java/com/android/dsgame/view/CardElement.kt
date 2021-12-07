@@ -16,18 +16,18 @@ import com.android.dsgame.model.Card
 /**
  * TODO: document your custom view class.
  */
-class HexButton : FrameLayout {
-    var vista: View
+class CardElement : FrameLayout {
+    var view: View
 
     // Constructors
     constructor(context: Context) : super(context) {
-        vista = inflate(context, R.layout.boton_hex, this)
+        view = inflate(context, R.layout.layout_card, this)
     }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        vista = inflate(context, R.layout.boton_hex, this)
+        view = inflate(context, R.layout.layout_card, this)
     }
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        vista = inflate(context, R.layout.boton_hex, this)
+        view = inflate(context, R.layout.layout_card, this)
     }
 
 
@@ -43,22 +43,22 @@ class HexButton : FrameLayout {
     }
 
     fun setName(name: String){
-        val nameView = vista.findViewById<TextView>(R.id.tvNombre)
+        val nameView = view.findViewById<TextView>(R.id.tvNombre)
         nameView.text = name
     }
 
-    fun setLetters(letters: MutableList<Char>){
-        val letterView = vista.findViewById<TextView>(R.id.tvLetra)
+    fun setLetters(letters: MutableList<String>){
+        val letterView = view.findViewById<TextView>(R.id.tvLetra)
         letterView.text = letters.toString()
     }
 
     fun setValue(value: Int){
-        val valueView = vista.findViewById<TextView>(R.id.tvValor)
+        val valueView = view.findViewById<TextView>(R.id.tvValor)
         valueView.text = value.toString()
     }
 
     fun setColor(color: String){
-        val image = vista.findViewById<ImageView>(R.id.ivHex)
+        val image = view.findViewById<ImageView>(R.id.ivHex)
         var id = resources.getIdentifier("${color}_hexagon", "drawable", PACKAGE_NAME)
         image.setImageResource(id)
     }
@@ -69,7 +69,7 @@ class HexButton : FrameLayout {
 
         for (cost in costs) {
             var id = resources.getIdentifier("tvCoste$pos", "id", PACKAGE_NAME)
-            var costView = vista.findViewById<TextView>(id)
+            var costView = view.findViewById<TextView>(id)
 
             costView.text = cost.value.toString()
 
@@ -83,13 +83,13 @@ class HexButton : FrameLayout {
 
         for (i in pos until 6) {
             var id = resources.getIdentifier("tvCoste$i", "id", PACKAGE_NAME)
-            var costView = vista.findViewById<TextView>(id)
+            var costView = view.findViewById<TextView>(id)
             costView.visibility = View.GONE
         }
     }
 
     override fun setOnClickListener(l: OnClickListener?) {
-        val boton = vista.findViewById<Button>(R.id.btHex)
+        val boton = view.findViewById<Button>(R.id.btHex)
         boton.setOnClickListener(l)
     }
 }
