@@ -19,7 +19,7 @@ class HistoryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val context = this
-        val uid = connectionManager.authenticator.currentUser.uid
+        val uid = connectionManager.authenticator.currentUser!!.uid
         connectionManager.getBoardsByUID(uid,
             object : ConnectionManager.BoardCallback {
                 override fun onCallback(boardList: List<Board>) {

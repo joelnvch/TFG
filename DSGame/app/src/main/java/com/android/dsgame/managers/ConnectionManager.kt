@@ -14,7 +14,7 @@ class ConnectionManager(var context: Context) {
     val database = FirebaseFirestore.getInstance()
 
     interface BoardCallback {
-        fun onCallback(value:List<Board>)
+        fun onCallback(boardList:List<Board>)
     }
 
     fun getBoardsByUID(userId: String, myCallback: BoardCallback){

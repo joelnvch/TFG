@@ -19,12 +19,6 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (connectionManager.authenticator.currentUser != null) {
-            // User is signed in
-            val i = Intent(this@LoginActivity, HomeActivity::class.java)
-            startActivity(i)
-        }
-
         binding.btLogin.setOnClickListener {
             if (binding.etEmail.text.toString() == "" || binding.etPassword.text.toString() == "") {
                 AlertDialog.Builder(this).apply {
