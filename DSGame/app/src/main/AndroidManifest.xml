@@ -25,7 +25,7 @@
 
         <activity android:name=".activities.HistoryActivity"/>
         <activity android:name=".activities.RegisterActivity"/>
-        <activity android:name=".activities.LoginActivity"/>
+        <activity android:name=".activities.LoginActivity" android:noHistory = "true"/>
         <activity android:name=".activities.HomeActivity"/>
         <activity android:name=".activities.SelectionActivity"/>
     </application>
