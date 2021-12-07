@@ -3,11 +3,9 @@ package com.android.dsgame.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Html
 import androidx.appcompat.app.AlertDialog
 import com.android.dsgame.databinding.ActivityRegisterBinding
 import com.android.dsgame.managers.ConnectionManager
-import com.google.firebase.auth.FirebaseAuth
 
 
 
@@ -31,7 +29,7 @@ class RegisterActivity : AppCompatActivity() {
                     setTitle("Error signing up")
                     setMessage("Passwords don't match.")
                     setPositiveButton(
-                        Html.fromHtml("<font color='#FFFFFF'>OK</font>"),
+                        "OK",
                         null
                     )
                 }.show()
@@ -48,7 +46,7 @@ class RegisterActivity : AppCompatActivity() {
                         setTitle("Unknown error")
                         setMessage("Try again.")
                         setPositiveButton(
-                            Html.fromHtml("<font color='#FFFFFF'>OK</font>"),
+                            "OK",
                             null
                         )
                     }.show()
