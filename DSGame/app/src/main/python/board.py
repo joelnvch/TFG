@@ -1,6 +1,6 @@
 import os
 import json
-from card import Card
+from card import *
 from collections import Counter
 
 
@@ -10,6 +10,7 @@ class Board:
     def __init__(self, all_cards=None, spots=None):
         self.all_cards = all_cards
         self.spots = spots
+        self.score = 0
 
 
     def get_best_cards(self, color):
@@ -27,7 +28,6 @@ class Board:
                 highest_val = current_value
         best_cards.append(best_card)
         best_card = None
-
 
         board_costs = self.get_letters_and_costs()[1]
 
@@ -52,20 +52,22 @@ class Board:
         return best_cards
 
 
-    def calculate_board_value(self, test_card):
+    def calculate_board_value(self, test_card=None):
         value = 0
 
         # set temporarily current position to None in case of previous existant val
         old_card = None
-        if self.spots[test_card.card_color] is not None:
+        if (test_card is not None) and (self.spots[test_card.card_color] is not None):
             old_card = self.spots[test_card.card_color]
             self.spots[test_card.card_color] = None
 
+        # add values of all current board cards
         for card in self.spots.values():
             if card is None:
                 break
             value += card.value
 
+        # if repeated letters add extra points, also add test_card value
         board_letters = self.get_letters_and_costs()[0]
         if test_card is not None:
             letters_rep = Counter(board_letters) + Counter(test_card.letters)
@@ -85,6 +87,7 @@ class Board:
     def set_card(self, color, card_id):
         card = self.all_cards[color][card_id]
         self.spots[color] = card
+        self.score = self.calculate_board_value()
 
     def get_letters_and_costs(self):
         """Iterate over board and count letters"""
@@ -96,6 +99,11 @@ class Board:
                 costs += Counter(self.spots[color].costs)
         return letters_rep, costs
 
+    def update_board(self, kt_board):
+        self.score = kt_board.getScore()
+        for color in COLORS:
+            self.spots[color] = transform_card(kt_board.getSpots().get(color))
+
 
 def init_board(path_all_cards):
     """Initialize board value"""
@@ -103,13 +111,12 @@ def init_board(path_all_cards):
 
     # load cards
     cards = dict.fromkeys(COLORS)
-    cont = 0
     for filename in os.listdir(path_all_cards):
         if filename.endswith(".json"):
             json_name = os.path.join(path_all_cards, filename)
             with open(json_name, 'r', encoding="utf8") as card_file:
-                cards[COLORS[cont]] = []
                 card_dict = {}
+                color = filename[filename.find("(")+1:filename.find(")")]
                 id = 0
 
                 card_data = json.loads(card_file.read())
@@ -117,8 +124,7 @@ def init_board(path_all_cards):
                     id+=1
                     card_dict[id] = Card(id, card['name'], card['costs'], card['letters'], card['value'], card['card_color'])
 
-                cards[COLORS[cont]] = card_dict
-        cont += 1
+                cards[color] = card_dict
 
     # set board vals
     all_cards = cards

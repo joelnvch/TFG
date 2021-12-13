@@ -1,38 +1,35 @@
 package com.android.dsgame.view
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.android.dsgame.activities.MyApplication.Companion.PACKAGE_NAME
 import com.android.dsgame.R
 import com.android.dsgame.model.Card
 
-/**
- * TODO: document your custom view class.
- */
-class HexButton : FrameLayout {
-    var vista: View
+
+class CardElement : FrameLayout {
+    var view: View
 
     // Constructors
     constructor(context: Context) : super(context) {
-        vista = inflate(context, R.layout.boton_hex, this)
+        view = inflate(context, R.layout.layout_card_element, this)
     }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        vista = inflate(context, R.layout.boton_hex, this)
+        view = inflate(context, R.layout.layout_card_element, this)
     }
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        vista = inflate(context, R.layout.boton_hex, this)
+        view = inflate(context, R.layout.layout_card_element, this)
     }
 
 
     // Setters
-    fun setCardView(card: Card?) {
+    fun setCardElement(card: Card?) {
         if (card != null){
             setName(card.name)
             setCosts(card.costs)
@@ -42,54 +39,55 @@ class HexButton : FrameLayout {
         }
     }
 
-    fun setName(name: String){
-        val nameView = vista.findViewById<TextView>(R.id.tvNombre)
+    //setcardelement otro con redireccion incluida
+
+
+    private fun setName(name: String){
+        val nameView = view.findViewById<TextView>(R.id.tvCardName)
         nameView.text = name
     }
 
-    fun setLetters(letters: MutableList<Char>){
-        val letterView = vista.findViewById<TextView>(R.id.tvLetra)
+    fun setLetters(letters: MutableList<String>){
+        val letterView = view.findViewById<TextView>(R.id.tvCardLetters)
         letterView.text = letters.toString()
     }
 
     fun setValue(value: Int){
-        val valueView = vista.findViewById<TextView>(R.id.tvValor)
+        val valueView = view.findViewById<TextView>(R.id.tvCardValue)
         valueView.text = value.toString()
     }
 
     fun setColor(color: String){
-        val image = vista.findViewById<ImageView>(R.id.ivHex)
-        var id = resources.getIdentifier("${color}_hexagon", "drawable", PACKAGE_NAME)
+        val image = view.findViewById<ImageView>(R.id.ivCardColor)
+        val id = resources.getIdentifier("${color}_hexagon", "drawable", PACKAGE_NAME)
         image.setImageResource(id)
     }
 
-    @SuppressLint("ResourceAsColor")
     fun setCosts(costs: MutableMap<String, Int>) {
         var pos = 1
 
         for (cost in costs) {
-            var id = resources.getIdentifier("tvCoste$pos", "id", PACKAGE_NAME)
-            var costView = vista.findViewById<TextView>(id)
+            val id = resources.getIdentifier("tvCost$pos", "id", PACKAGE_NAME)
+            val costView = view.findViewById<TextView>(id)
 
             costView.text = cost.value.toString()
 
-            if ("orange" == cost.key)
-                costView.setBackgroundColor(R.color.orange)
-            else
-                costView.setBackgroundColor(Color.parseColor(cost.key))
+            val colorId = resources.getIdentifier(cost.key, "color", PACKAGE_NAME)
+            val color = ContextCompat.getColor(context, colorId)
+            costView.setBackgroundColor(color)
 
             pos++
         }
 
         for (i in pos until 6) {
-            var id = resources.getIdentifier("tvCoste$i", "id", PACKAGE_NAME)
-            var costView = vista.findViewById<TextView>(id)
+            val id = resources.getIdentifier("tvCost$i", "id", PACKAGE_NAME)
+            val costView = view.findViewById<TextView>(id)
             costView.visibility = View.GONE
         }
     }
 
     override fun setOnClickListener(l: OnClickListener?) {
-        val boton = vista.findViewById<Button>(R.id.btHex)
+        val boton = view.findViewById<Button>(R.id.btCard)
         boton.setOnClickListener(l)
     }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+    <com.android.dsgame.view.CardElement
+            android:layout_width="141dp"
+            android:layout_height="134dp"
+            android:id="@+id/ceCard3"
+            app:layout_constraintStart_toEndOf="@+id/ceCard2"
+            android:layout_marginStart="-3dp" app:layout_constraintTop_toTopOf="@+id/ceCard2">
+    </com.android.dsgame.view.CardElement>
+    <com.android.dsgame.view.CardElement
+            android:layout_width="140dp"
+            android:layout_height="134dp"
+            android:id="@+id/ceCard2"
+            app:layout_constraintStart_toEndOf="@+id/ceCard1"
+            android:layout_marginStart="-4dp"
+            app:layout_constraintTop_toTopOf="@+id/ceCard1">
+    </com.android.dsgame.view.CardElement>
+    <com.android.dsgame.view.CardElement
+            android:layout_width="141dp"
+            android:layout_height="134dp"
+            android:id="@+id/ceCard1"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="-4dp"
+            app:layout_constraintTop_toTopOf="parent">
+    </com.android.dsgame.view.CardElement>
+</androidx.constraintlayout.widget.ConstraintLayout>

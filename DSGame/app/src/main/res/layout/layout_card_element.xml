@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content">
 
     <ImageView
             android:layout_width="145dp"
-            android:layout_height="145dp" app:srcCompat="@drawable/black_hexagon" android:id="@+id/ivHex"
-            android:rotation="90"
+            android:layout_height="145dp" app:srcCompat="@drawable/black_hexagon" android:id="@+id/ivCardColor"
+            android:rotation="90"/>
 
-            tools:ignore="VectorDrawableCompat"/>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="145dp"
             android:layout_height="145dp">
@@ -17,69 +16,70 @@
         <ImageView
                 android:layout_width="129dp"
                 android:layout_height="144dp" app:srcCompat="@drawable/white_hexagon"
-                android:id="@+id/imageView"
-                android:rotation="90" tools:layout_editor_absoluteY="0dp"
-                app:layout_constraintStart_toStartOf="@+id/btHex"
-                app:layout_constraintEnd_toEndOf="@+id/btHex" app:layout_constraintTop_toTopOf="parent"/>
+                android:rotation="90"
+                app:layout_constraintStart_toStartOf="@+id/btCard"
+                app:layout_constraintEnd_toEndOf="@+id/btCard" app:layout_constraintTop_toTopOf="parent"/>
         <TextView
                 android:layout_width="87dp"
-                android:layout_height="62dp" android:id="@+id/tvNombre"
+                android:layout_height="62dp" android:id="@+id/tvCardName"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintVertical_bias="0.373"
                 android:textSize="16sp" android:layout_marginBottom="8dp" android:gravity="center"/>
         <TextView
                 android:layout_width="34dp"
-                android:layout_height="17dp" android:id="@+id/tvLetra"
+                android:layout_height="17dp" android:id="@+id/tvCardLetters"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="14dp"
-                android:textSize="14sp" app:layout_constraintStart_toStartOf="@+id/btHex"
-                android:layout_marginLeft="32dp" android:layout_marginStart="32dp"/>
+                android:textColor="#000000"
+                android:textSize="14sp" app:layout_constraintStart_toStartOf="@+id/btCard"
+                android:layout_marginStart="32dp" android:textStyle="bold"/>
         <TextView
                 android:layout_width="26dp"
-                android:layout_height="17dp" android:id="@+id/tvValor"
+                android:layout_height="17dp" android:id="@+id/tvCardValue"
                 android:textSize="14sp"
-                android:gravity="right"
+                android:gravity="end"
+                android:textColor="#000000"
                 android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp" app:layout_constraintEnd_toEndOf="@+id/btHex"
-                app:layout_constraintTop_toTopOf="@+id/tvLetra"/>
+                app:layout_constraintEnd_toEndOf="@+id/btCard"
+                app:layout_constraintTop_toTopOf="@+id/tvCardLetters" android:textStyle="bold"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="82dp"
                 android:layout_height="17dp"
-                android:id="@+id/lyCostes" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/lyCardCosts" app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginBottom="36dp">
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/tvCoste1" android:layout_weight="1"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="#000000" android:id="@+id/tvCost1" android:layout_weight="1"
                     android:gravity="center_horizontal" android:textSize="14sp" android:textStyle="bold"/>
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/tvCoste2" android:layout_weight="1"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="#000000" android:id="@+id/tvCost2" android:layout_weight="1"
                     android:gravity="center_horizontal" android:textSize="14sp" android:textStyle="bold"/>
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/tvCoste3" android:layout_weight="1"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="#000000" android:id="@+id/tvCost3" android:layout_weight="1"
                     android:gravity="center_horizontal" android:textSize="14sp" android:textStyle="bold"/>
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/tvCoste4" android:layout_weight="1"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="#000000" android:id="@+id/tvCost4" android:layout_weight="1"
                     android:gravity="center_horizontal" android:textSize="14sp" android:textStyle="bold"/>
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/tvCoste5" android:layout_weight="1"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="#000000" android:id="@+id/tvCost5" android:layout_weight="1"
                     android:gravity="center_horizontal" android:textSize="14sp" android:textStyle="bold"/>
 
         </LinearLayout>
         <Button
                 android:layout_width="124dp"
-                android:layout_height="126dp" android:id="@+id/btHex" android:layout_weight="1"
+                android:layout_height="126dp" android:id="@+id/btCard" android:layout_weight="1"
                 android:backgroundTint="@color/clear"
-                app:layout_constraintBottom_toBottomOf="@+id/tvNombre"
-                app:layout_constraintStart_toStartOf="@+id/tvNombre"
-                app:layout_constraintTop_toTopOf="@+id/tvNombre"
-                app:layout_constraintEnd_toEndOf="@+id/tvNombre"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCardName"
+                app:layout_constraintStart_toStartOf="@+id/tvCardName"
+                app:layout_constraintTop_toTopOf="@+id/tvCardName"
+                app:layout_constraintEnd_toEndOf="@+id/tvCardName"
                 style="?android:attr/borderlessButtonStyle"
                 app:layout_constraintVertical_bias="0.39" app:rippleColor="#00FFFFFF" app:iconTint="#00FFFFFF"
                 app:backgroundTint="#00FFFFFF"/>
