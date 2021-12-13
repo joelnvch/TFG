@@ -16,7 +16,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
-            android:id="@+id/hb_black"
+            android:id="@+id/ce_black"
             android:layout_marginStart="-2dp"
             app:layout_constraintVertical_bias="0.52">
     </com.android.dsgame.view.CardElement>
@@ -25,10 +25,10 @@
             android:layout_width="140dp"
             android:layout_height="135dp"
             android:layout_marginBottom="135dp"
-            app:layout_constraintBottom_toBottomOf="@+id/hb_black"
-            app:layout_constraintStart_toStartOf="@+id/hb_black"
-            app:layout_constraintEnd_toEndOf="@+id/hb_black"
-            android:id="@+id/hb_blue">
+            app:layout_constraintBottom_toBottomOf="@+id/ce_black"
+            app:layout_constraintStart_toStartOf="@+id/ce_black"
+            app:layout_constraintEnd_toEndOf="@+id/ce_black"
+            android:id="@+id/ce_blue">
 
     </com.android.dsgame.view.CardElement>
 
@@ -36,56 +36,52 @@
             android:layout_width="140dp"
             android:layout_height="135dp"
             android:layout_marginEnd="119dp"
-            android:layout_marginRight="119dp"
-            app:layout_constraintEnd_toEndOf="@+id/hb_black"
-            app:layout_constraintBottom_toBottomOf="@+id/hb_black"
+            app:layout_constraintEnd_toEndOf="@+id/ce_black"
+            app:layout_constraintBottom_toBottomOf="@+id/ce_black"
             android:layout_marginBottom="64dp"
-            android:id="@+id/hb_orange"/>
+            android:id="@+id/ce_orange"/>
 
     <com.android.dsgame.view.CardElement
             android:layout_width="140dp"
             android:layout_height="135dp"
-            android:id="@+id/hb_purple"
+            android:id="@+id/ce_purple"
             android:layout_marginTop="71dp"
-            app:layout_constraintTop_toTopOf="@+id/hb_black"
+            app:layout_constraintTop_toTopOf="@+id/ce_black"
             android:layout_marginEnd="119dp"
-            android:layout_marginRight="119dp"
-            app:layout_constraintEnd_toEndOf="@+id/hb_black"/>
+            app:layout_constraintEnd_toEndOf="@+id/ce_black"/>
 
     <com.android.dsgame.view.CardElement
             android:layout_width="140dp"
             android:layout_height="135dp"
             android:layout_marginTop="135dp"
-            app:layout_constraintTop_toTopOf="@+id/hb_black"
-            app:layout_constraintEnd_toEndOf="@+id/hb_black"
-            app:layout_constraintStart_toStartOf="@+id/hb_black"
-            android:id="@+id/hb_green"/>
+            app:layout_constraintTop_toTopOf="@+id/ce_black"
+            app:layout_constraintEnd_toEndOf="@+id/ce_black"
+            app:layout_constraintStart_toStartOf="@+id/ce_black"
+            android:id="@+id/ce_green"/>
 
     <com.android.dsgame.view.CardElement
             android:layout_width="140dp"
             android:layout_height="135dp"
-            android:id="@+id/hb_yellow"
-            app:layout_constraintStart_toStartOf="@+id/hb_black"
-            android:layout_marginLeft="120dp"
+            android:id="@+id/ce_yellow"
+            app:layout_constraintStart_toStartOf="@+id/ce_black"
             android:layout_marginStart="120dp"
-            app:layout_constraintBottom_toBottomOf="@+id/hb_black"
+            app:layout_constraintBottom_toBottomOf="@+id/ce_black"
             android:layout_marginBottom="64dp"/>
 
     <com.android.dsgame.view.CardElement
             android:layout_width="140dp"
             android:layout_height="135dp"
             android:layout_marginTop="71dp"
-            app:layout_constraintTop_toTopOf="@+id/hb_black"
-            app:layout_constraintStart_toStartOf="@+id/hb_black"
-            android:layout_marginLeft="120dp"
+            app:layout_constraintTop_toTopOf="@+id/ce_black"
+            app:layout_constraintStart_toStartOf="@+id/ce_black"
             android:layout_marginStart="120dp"
-            android:id="@+id/hb_red"/>
+            android:id="@+id/ce_red"/>
 
     <ImageView
             android:layout_width="match_parent"
             android:layout_height="66dp"
             app:srcCompat="@drawable/rectangle"
-            android:id="@+id/imageView2"
+            android:id="@+id/ivTaskbar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -95,7 +91,7 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/history_icon"
             android:id="@+id/btHistory"
-            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/ivTaskbar"
             android:layout_marginStart="7dp"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="6dp"/>
@@ -131,9 +127,11 @@
             android:gravity="center"
             android:textSize="20sp"
             android:maxLength="20"
-            app:layout_constraintBottom_toTopOf="@+id/hb_blue"
-            app:layout_constraintEnd_toEndOf="@+id/hb_black"
-            app:layout_constraintStart_toStartOf="@+id/hb_black"
+            android:hint="Email"
+            android:importantForAutofill="no"
+            app:layout_constraintBottom_toTopOf="@+id/ce_blue"
+            app:layout_constraintEnd_toEndOf="@+id/ce_black"
+            app:layout_constraintStart_toStartOf="@+id/ce_black"
             android:layout_marginBottom="10dp"/>
 
     <TextView
@@ -143,7 +141,7 @@
             android:id="@+id/tvScore"
             android:textSize="20sp"
             android:textColorHighlight="#0B0A0A"
-            app:layout_constraintTop_toBottomOf="@+id/hb_black"
+            app:layout_constraintTop_toBottomOf="@+id/ce_black"
             android:layout_marginTop="168dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="40dp"

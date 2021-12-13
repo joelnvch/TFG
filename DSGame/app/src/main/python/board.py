@@ -111,13 +111,12 @@ def init_board(path_all_cards):
 
     # load cards
     cards = dict.fromkeys(COLORS)
-    cont = 0
     for filename in os.listdir(path_all_cards):
         if filename.endswith(".json"):
             json_name = os.path.join(path_all_cards, filename)
             with open(json_name, 'r', encoding="utf8") as card_file:
-                cards[COLORS[cont]] = []
                 card_dict = {}
+                color = filename[filename.find("(")+1:filename.find(")")]
                 id = 0
 
                 card_data = json.loads(card_file.read())
@@ -125,8 +124,7 @@ def init_board(path_all_cards):
                     id+=1
                     card_dict[id] = Card(id, card['name'], card['costs'], card['letters'], card['value'], card['card_color'])
 
-                cards[COLORS[cont]] = card_dict
-        cont += 1
+                cards[color] = card_dict
 
     # set board vals
     all_cards = cards

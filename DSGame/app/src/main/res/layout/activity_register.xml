@@ -9,8 +9,8 @@
 
   <TextView
           android:text="Sign Up"
-          android:layout_width="164dp"
-          android:layout_height="62dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
           android:id="@+id/tvSignin"
           android:textSize="48sp"
           app:layout_constraintEnd_toEndOf="parent"

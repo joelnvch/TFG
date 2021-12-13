@@ -27,15 +27,15 @@
                 android:layout_width="89dp"
                 android:layout_height="25dp"
                 android:textSize="20sp" android:gravity="center"
-                android:id="@+id/textView11" app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"
+                android:id="@+id/tvScoreLiteral" app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"/>
         <TextView
                 android:layout_width="66dp"
                 android:layout_height="25dp" android:id="@+id/tvScore"
                 android:textSize="20sp" android:gravity="center"
-                app:layout_constraintStart_toStartOf="@+id/textView11"
-                app:layout_constraintEnd_toEndOf="@+id/textView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView11" android:layout_marginTop="6dp"
+                app:layout_constraintStart_toStartOf="@+id/tvScoreLiteral"
+                app:layout_constraintEnd_toEndOf="@+id/tvScoreLiteral"
+                app:layout_constraintTop_toBottomOf="@+id/tvScoreLiteral" android:layout_marginTop="6dp"
                 app:layout_constraintHorizontal_bias="0.391"/>
 
         <View

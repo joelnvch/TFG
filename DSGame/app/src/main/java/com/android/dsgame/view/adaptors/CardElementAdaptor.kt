@@ -9,64 +9,57 @@ import com.android.dsgame.R
 import com.android.dsgame.activities.HomeActivity
 import com.android.dsgame.model.TripleCard
 import com.android.dsgame.managers.GameManager
+import com.android.dsgame.model.Card
 import com.android.dsgame.view.CardElement
 
 class CardElementAdaptor (private val dataSet: Array<TripleCard>) :
         RecyclerView.Adapter<CardElementAdaptor.ViewHolder>() {
 
-        /**
-         * Provide a reference to the type of views that you are using
-         * (custom ViewHolder).
-         */
         class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val bestCard1: CardElement
-            val bestCard2: CardElement
-            val bestCard3: CardElement
+            val card1: CardElement
+            val card2: CardElement
+            val card3: CardElement
 
             init {
-                bestCard1 = view.findViewById(R.id.hbCard1)
-                bestCard2 = view.findViewById(R.id.hbCard2)
-                bestCard3 = view.findViewById(R.id.hbCard3)
+                card1 = view.findViewById(R.id.ceCard1)
+                card2 = view.findViewById(R.id.ceCard2)
+                card3 = view.findViewById(R.id.ceCard3)
             }
         }
 
-        // Create new views (invoked by the layout manager)
         override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-            // Create a new view, which defines the UI of the list item
             val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.layout_card_row, viewGroup, false)
             return ViewHolder(view)
         }
 
-        // Replace the contents of a view (invoked by the layout manager)
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            // Get element from your dataset at this position and replace the
-            // contents of the view with that element
             val tripleCard = dataSet[position]
 
-            holder.bestCard1.setCardView(tripleCard.card1)
-            holder.bestCard1.setOnClickListener {
-                GameManager.setCard(tripleCard.color, tripleCard.card1!!.id!!)
-                it.context.startActivity(Intent(it.context, HomeActivity::class.java))
-            }
+            setCardAdaptor(holder.card1, tripleCard.card1, tripleCard.color)
 
-            if (tripleCard.card2 != null) {
-                holder.bestCard2.setCardView(tripleCard.card2)
-                holder.bestCard2.setOnClickListener {
-                    GameManager.setCard(tripleCard.color, tripleCard.card2!!.id!!)
-                    it.context.startActivity(Intent(it.context, HomeActivity::class.java))
-                }
-            } else
-                holder.bestCard2.visibility = View.GONE
+            if (tripleCard.card2 != null)
+                setCardAdaptor(holder.card2, tripleCard.card2, tripleCard.color)
+            else
+                holder.card2.visibility = View.GONE
 
-            if (tripleCard.card3 != null) {
-                holder.bestCard3.setCardView(tripleCard.card3)
-                holder.bestCard3.setOnClickListener {
-                    GameManager.setCard(tripleCard.color, tripleCard.card3!!.id!!)
-                    it.context.startActivity(Intent(it.context, HomeActivity::class.java))
-                }
-            } else
-                holder.bestCard3.visibility = View.GONE
+            if (tripleCard.card3 != null)
+                setCardAdaptor(holder.card3, tripleCard.card3, tripleCard.color)
+            else
+                holder.card3.visibility = View.GONE
         }
 
-        override fun getItemCount() = dataSet.size
+
+    private fun setCardAdaptor(cardElementAdaptor: CardElement, cardElement: Card?, color: String) {
+        cardElementAdaptor.setCardElement(cardElement)
+        cardElementAdaptor.setOnClickListener {
+            GameManager.setCard(color, cardElement!!.id!!)
+            val intent = Intent(it.context, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+
+            it.context.startActivity(intent)
+        }
     }
+
+    override fun getItemCount() = dataSet.size
+}

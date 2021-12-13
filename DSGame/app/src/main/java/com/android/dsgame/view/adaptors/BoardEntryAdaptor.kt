@@ -12,6 +12,8 @@ import com.android.dsgame.R
 import com.android.dsgame.activities.HomeActivity
 import com.android.dsgame.managers.GameManager
 import com.android.dsgame.model.Board
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 
 
 class BoardEntryAdaptor (private val dataSet: Array<Board>) :
@@ -38,9 +40,10 @@ class BoardEntryAdaptor (private val dataSet: Array<Board>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val board = dataSet[position]
+        val formatter: DateFormat = SimpleDateFormat("dd/MM/yyyy")
 
         holder.name.text = board.name
-        holder.date.text = board.date.day.toString() + "/" + board.date.month.toString() + "/" + board.date.year.toString()
+        holder.date.text = formatter.format(board.date)
         holder.score.text = board.score.toString()
 
         holder.entryElement.setOnClickListener{
@@ -56,10 +59,13 @@ class BoardEntryAdaptor (private val dataSet: Array<Board>) :
                     "OK"
                 ) { _, _ ->
                     GameManager.updateBoard(board)
-                    it.context.startActivity(Intent(it.context, HomeActivity::class.java))
+
+                    val intent = Intent(it.context, HomeActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    intent.addFlags( Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                    it.context.startActivity(intent)
                 }
             }.show()
-
         }
     }
 

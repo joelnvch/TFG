@@ -23,11 +23,12 @@
                 </intent-filter>
         </activity>
 
-        <activity android:name=".activities.HistoryActivity"/>
+        <activity android:name=".activities.LoginActivity"/>
         <activity android:name=".activities.RegisterActivity"/>
-        <activity android:name=".activities.LoginActivity" android:noHistory = "true"/>
-        <activity android:name=".activities.HomeActivity"/>
-        <activity android:name=".activities.SelectionActivity"/>
+
+        <activity android:name=".activities.HomeActivity"  />
+        <activity android:name=".activities.SelectionActivity" android:noHistory = "true"/>
+        <activity android:name=".activities.HistoryActivity"/>
     </application>
 
 </manifest>

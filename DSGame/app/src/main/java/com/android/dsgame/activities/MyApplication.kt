@@ -1,8 +1,6 @@
 package com.android.dsgame.activities
 
 import android.app.Application
-import android.content.Context
-import com.android.dsgame.managers.ConnectionManager
 import com.android.dsgame.model.Board
 import com.android.dsgame.model.Card
 import com.android.dsgame.managers.GameManager
@@ -20,13 +18,9 @@ class MyApplication : Application(){
 
     override fun onCreate(){
         super.onCreate()
-        initPython()
-
         PACKAGE_NAME = packageName
-
-        val pythonFile = Python.getInstance().getModule("board")
-        pyBoard = pythonFile.callAttr("init_board", "cardData")
-        board = Board(pyBoard)
+        initPython()
+        GameManager.initBoard()
 
         // SAVE ALL CARDS VALUE
         var map : MutableMap<Int, Card>
@@ -43,6 +37,4 @@ class MyApplication : Application(){
             Python.start(AndroidPlatform(this))
         }
     }
-
-
 }

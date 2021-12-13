@@ -13,6 +13,14 @@
     <color name="gray_400">#FFBDBDBD</color>
     <color name="gray_600">#FF757575</color>
 
-    <color name="orange">#FFA500</color>
-    
+    <!-- Colors for card costs bg-->
+    <color name="orange">#f2cb99</color>
+    <color name="blue">#9ccdff</color>
+    <color name="gray">#cccccc</color>
+    <color name="red">#e49999</color>
+    <color name="yellow">#fefecc</color>
+    <color name="green">#ceffcc</color>
+
+
+
 </resources>
